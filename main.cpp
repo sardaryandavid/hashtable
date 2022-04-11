@@ -6,19 +6,25 @@
 
 int main()
 {
-    struct hashtable* HashTable = hashtableCstr(20);
+    struct hashtable* HashTable = hashtableCstr(HASHCONST);
 
-    char * str1 = (char*) calloc (20, sizeof(*str1));
+    char * str1 = (char*) calloc (30, sizeof(*str1));
     
-    printf ("Enter the str: ");
-    scanf  ("%s", str1);
-    printf ("%s", str1);
+    printf ("Enter the str: \n");
+    scanf  ("%[^\n]", str1);
+  
+    //printf ("%s", str1);
 
     add (HashTable, str1);
-    printf("\n[%s]", find (HashTable, hash(str1, HashTable)));
+    add (HashTable, str1);
+    add (HashTable, str1);
+
+    printf("[%d]\n", find (HashTable, str1));
+    printf("Frequences: <%d>\n", frequences (HashTable, str1));
+
+    graphList (HashTable, hash (str1, HashTable));
 
     hashtableDstr (HashTable);
-
     free (str1);
 
     return 0;

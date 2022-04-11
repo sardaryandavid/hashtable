@@ -9,7 +9,7 @@
 
 struct node
 {
-    int data;
+    int freq;
     
     char* str;
 
@@ -68,11 +68,11 @@ void listCtor (list* List)
 
 //*******************************
 
-struct node* newNode (int val, char* str)
+struct node* newNode (char* str)
 {
     node* newNode = (struct node*) calloc(1, sizeof (*newNode));
 
-    newNode->data = val;
+    newNode->freq = 1;
 
     if (str != nullptr)
     {
@@ -182,9 +182,9 @@ void delNode (list* List, node* Node)
     Node->next = nullptr;
     Node->prev = nullptr;
     
-    Node->data = POISON;
+    Node->freq = POISON;
 
-    free (Node); //нужно ли делать
+    free (Node);
 }
 
 #endif
